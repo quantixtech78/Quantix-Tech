@@ -67,7 +67,7 @@ type RouteSeo = {
 export const ROUTES: Record<string, RouteSeo> = {
   home: {
     path: "/",
-    title: "Quantix Tech — Web, Mobile, Cloud & AI Development",
+    title: "Quantix Tech — Innovative Solutions | Web & Mobile Development",
     description:
       "Quantix Tech builds web, mobile, cloud, and AI solutions for businesses across Saudi Arabia, Jordan, and beyond. We turn ideas into powerful digital products.",
     keywords: BASE_KEYWORDS,
