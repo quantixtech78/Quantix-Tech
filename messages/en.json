@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "footer": {
+    "tagline": "Turning ideas into powerful digital products.",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "ourServices": "Our Services",
+    "careers": "Careers",
+    "services": "Services",
+    "webDevelopment": "Web Development",
+    "mobileApps": "Mobile Apps",
+    "cloudSolutions": "Cloud Solutions",
+    "integrationPortals": "Integration & Portals",
+    "legal": "Legal",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  },
+  "cta": {
+    "startProject": "Start a Project",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "viewServices": "View Services"
+  },
+  "seo": {
+    "home": {
+      "title": "Quantix Tech — Web, Mobile, Cloud & AI Development",
+      "description": "Quantix Tech builds web, mobile, cloud, and AI solutions for businesses across Saudi Arabia, Jordan, and beyond. We turn ideas into powerful digital products."
+    },
+    "services": {
+      "title": "Services",
+      "description": "End-to-end software services: web and mobile development, cloud and DevOps, system integration, and AI solutions — engineered for scale and reliability."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Meet Quantix Tech — an engineering team turning ambitious ideas into dependable software. Our mission, values, and the people behind the work."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Start a project with Quantix Tech. Tell us what you're building and we'll get back to you with a clear, practical plan."
+    },
+    "privacy-policies": {
+      "title": "Privacy Policy",
+      "description": "How Quantix Tech collects, uses, and protects your information."
+    },
+    "terms-and-conditions": {
+      "title": "Terms & Conditions",
+      "description": "The terms that govern the use of Quantix Tech's website and services."
+    }
+  }
+}
