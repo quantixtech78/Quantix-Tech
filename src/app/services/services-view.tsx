@@ -19,6 +19,7 @@ import {
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { FeaturePanels } from "@/components/feature-panels";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -875,32 +876,14 @@ export function ServicesView() {
             </motion.div>
 
             <motion.div
-              initial="hidden"
-              animate={industriesInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              initial={{ opacity: 0, y: 24 }}
+              animate={
+                industriesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }
+              }
+              transition={{ duration: 0.6 }}
+              className="max-w-6xl mx-auto"
             >
-              {industries.map((industry) => (
-                <motion.div
-                  key={industry.name}
-                  variants={fadeInUp}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                >
-                  <Card className="h-full bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="w-12 h-12 rounded-xl bg-[#38bdf8]/20 flex items-center justify-center mb-4">
-                        <industry.icon className="w-6 h-6 text-[#38bdf8]" />
-                      </div>
-                      <h3 className="text-lg text-white/90 font-semibold mb-2">
-                        {industry.name}
-                      </h3>
-                      <p className="text-white/70 text-sm">
-                        {industry.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+              <FeaturePanels items={industries} />
             </motion.div>
           </div>
         </section>

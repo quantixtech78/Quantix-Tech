@@ -5,6 +5,8 @@ import { useRef } from "react";
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ValuesShowcase } from "@/components/values-showcase";
+import { NumeralGrid } from "@/components/numeral-grid";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -334,27 +336,9 @@ export function AboutView() {
               initial="hidden"
               animate={valuesInView ? "visible" : "hidden"}
               variants={staggerContainer}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6"
+              className="max-w-6xl mx-auto"
             >
-              {companyValues.map((value) => (
-                <motion.div
-                  key={value.title}
-                  variants={fadeInUp}
-                  whileHover={{ y: -4 }}
-                >
-                  <div className="h-44 md:h-48 w-full bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-lg transition p-6 flex flex-col items-start text-left">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d4a6f] flex items-center justify-center mb-2 flex-shrink-0">
-                      <value.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                    </div>
-                    <h3 className="text-sm font-semibold text-[#0f172a] leading-tight mb-1">
-                      {value.title}
-                    </h3>
-                    <p className="text-xs text-slate-500">
-                      {value.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+              <NumeralGrid items={companyValues} tone="light" columns={3} />
             </motion.div>
           </div>
         </section>
@@ -369,7 +353,7 @@ export function AboutView() {
               initial="hidden"
               animate={locationsInView ? "visible" : "hidden"}
               variants={staggerContainer}
-              className="text-center mb-12"
+              className="text-center mb-16"
             >
               <motion.h2
                 variants={fadeInUp}
@@ -379,7 +363,7 @@ export function AboutView() {
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
-                className="text-white/70 max-w-2xl mx-auto mb-8"
+                className="text-white/70 max-w-2xl mx-auto"
               >
                 We combine strategic planning, technical expertise, and
                 customer-centric delivery methodologies to ensure every project
@@ -389,29 +373,20 @@ export function AboutView() {
             </motion.div>
 
             <motion.div
-              initial="hidden"
-              animate={locationsInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+              initial={{ opacity: 0, y: 24 }}
+              animate={
+                locationsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }
+              }
+              transition={{ duration: 0.6 }}
+              className="max-w-6xl mx-auto"
             >
-              {commitments.map((c) => (
-                <motion.div
-                  key={c.title}
-                  variants={fadeInUp}
-                  whileHover={{ y: -4 }}
-                >
-                  <div className="h-44 md:h-48 w-full bg-white/5 border border-white/10 rounded-xl shadow-sm hover:shadow-lg transition p-6 flex flex-col items-start text-left">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#38bdf8]/20 flex items-center justify-center mb-2 flex-shrink-0">
-                      <c.icon className="w-5 h-5 md:w-6 md:h-6 text-[#38bdf8]" />
-                    </div>
-                    <h3 className="text-sm font-semibold text-white leading-tight mb-1">
-                      {c.title}
-                    </h3>
-                    <p className="text-xs text-white/70">{c.description}</p>
-                  </div>
-                </motion.div>
-              ))}
+              <ValuesShowcase
+                items={commitments}
+                tone="dark"
+                label="Our Commitment"
+              />
             </motion.div>
+
           </div>
         </section>
 

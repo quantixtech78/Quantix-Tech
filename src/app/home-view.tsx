@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AnimatedNetworkBackground } from "@/components/animated-network-background";
+import { ProcessTimeline } from "@/components/process-timeline";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -210,7 +211,6 @@ export function HomeView() {
     margin: "-100px",
   });
   const statsInView = useInView(statsRef, { once: false, margin: "-100px" });
-  const processInView = useInView(processRef, { once: true, margin: "-100px" });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -567,62 +567,10 @@ export function HomeView() {
         {/* Process Section */}
         <section
           ref={processRef}
-          className="py-20 bg-gradient-to-b from-white to-slate-50"
+          className="py-20 md:py-28 bg-gradient-to-b from-white to-slate-50"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial="hidden"
-              animate={processInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-              className="text-center mb-16"
-            >
-              <motion.h2
-                variants={fadeInUp}
-                className="text-3xl md:text-4xl font-bold text-[#0f172a] mb-4"
-              >
-                How We Create <span className="gradient-text">Success</span>
-              </motion.h2>
-              <motion.p
-                variants={fadeInUp}
-                className="text-slate-600 max-w-2xl mx-auto"
-              >
-                A streamlined process designed to deliver exceptional results on
-                time and within budget. Engineered for Excellence. Designed for
-                Results.
-              </motion.p>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              animate={processInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.step}
-                  variants={fadeInUp}
-                  whileHover={{ y: -5 }}
-                  className="relative group"
-                >
-                  <Card className="h-full border-slate-200 hover:border-[#38bdf8]/50 hover:shadow-xl transition-all duration-300 overflow-hidden">
-                    <CardContent className="p-6">
-                      <div className="text-6xl font-bold  group-hover:text-[#38bdf8]/30 transition-colors absolute top-2 right-4 text-[#38bdf8]/40">
-                        {step.step}
-                      </div>
-                      <div className="relative">
-                        <h3 className="text-lg font-bold text-[#0f172a] mb-2 group-hover:text-[#38bdf8] transition-colors">
-                          {step.title}
-                        </h3>
-                        <p className="text-slate-500 text-sm">
-                          {step.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
+            <ProcessTimeline steps={processSteps} />
           </div>
         </section>
 
