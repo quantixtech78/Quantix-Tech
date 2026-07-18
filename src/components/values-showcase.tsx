@@ -47,7 +47,7 @@ export function ValuesShowcase({
     if (paused || !isInView) return;
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % items.length);
-    }, 5000);
+    }, 3000);
     return () => window.clearInterval(timer);
   }, [paused, isInView, items.length]);
 
