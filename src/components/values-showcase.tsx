@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, type LucideIcon } from "lucide-react";
 
 export type ShowcaseItem = {
@@ -24,15 +24,32 @@ export function ValuesShowcase({
 }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const isDark = tone === "dark";
 
   useEffect(() => {
-    if (paused) return;
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (paused || !isInView) return;
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % items.length);
     }, 5000);
     return () => window.clearInterval(timer);
-  }, [paused, items.length]);
+  }, [paused, isInView, items.length]);
 
   const item = items[active];
   const ActiveIcon = item.icon;
@@ -43,6 +60,7 @@ export function ValuesShowcase({
 
   return (
     <div
+      ref={sectionRef}
       className="grid lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] gap-14 lg:gap-24 items-center"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -50,7 +68,7 @@ export function ValuesShowcase({
       onBlurCapture={() => setPaused(false)}
     >
       {/* Dial */}
-      <div className="relative mx-auto w-[260px] h-[260px] shrink-0">
+      <div className="relative mx-auto w-65 h-65 shrink-0">
         <div className="absolute inset-6 rounded-full bg-[#38bdf8]/20 blur-3xl" />
         <svg
           viewBox="0 0 260 260"
